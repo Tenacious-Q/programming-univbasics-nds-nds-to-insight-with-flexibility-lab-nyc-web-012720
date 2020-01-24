@@ -94,7 +94,6 @@ def gross_per_studio(collection)
   studio_total = 0
   i = 0
   while i < collection.length do
-
     puts "i is currently: #{i}"  #hg pretty printing
 
     if studios.include?(collection[i][:studio]) == false then
@@ -106,16 +105,18 @@ def gross_per_studio(collection)
     studio_name = collection[i][:studio]
     movie_gross = collection[i][:worldwide_gross]
 
-    studio_total = 0 # - This correctly totals a few studios, but
-                     # - the studio keys seem to get overwritten
-                     # - i.e. iteration 4 replaces the studio total
-                     # - with the next movie total.
+   # - This correctly totals a few studios, but the
+   # - studio keys seem to get overwritten -
+   # - i.e. iteration 3 replaces the studio total
+   # - with the next movie total instead of adding it.
+    studio_total = 0 # - This line probably shouldn't be here, but not sure where it should go.
     k = 0
     while k < studios.length do
-
+puts "studio_name: #{studio_name}"
       if studios[k] == studio_name then
         studio_total += movie_gross
-        puts hash[studios[k]] = studio_total
+        hash[studio_name] = studio_total
+        puts hash[studios[k]]
       end
 
     k += 1
